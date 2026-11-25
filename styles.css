@@ -60,6 +60,9 @@ h2 { margin-bottom: 0; }
 }
 
 .primary-button:hover { background: #1e4bbb; }
+
+.topbar-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 10px; }
+a.secondary-button { display: inline-block; text-decoration: none; }
 .primary-button span { margin-right: 7px; font-size: 1.1rem; }
 
 .stats {

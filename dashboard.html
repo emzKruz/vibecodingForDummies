@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Excel-dashbord</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M2 7.5h16M2 12.5h16M7.5 2v16" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+      </div>
+      <div style="min-width:0">
+        <a class="back-link" href="index.html">← Lånelogg</a>
+        <h1>Excel-dashbord</h1>
+        <p id="source">Laster …</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="pick" type="button">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 11V2M4.5 5.5 8 2l3.5 3.5M2.5 10.5v3h11v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Velg Excel-fil
+      </button>
+      <button class="btn" id="reload" type="button" hidden>Last inn på nytt</button>
+      <button class="btn" id="download-sample" type="button">Last ned eksempelfil</button>
+      <input type="file" id="file" accept=".xlsx,.xlsm,.xls,.xlsb,.ods,.csv" hidden>
+    </div>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <nav class="tabs" id="tabs" aria-label="Ark i arbeidsboken"></nav>
+
+  <section class="filters" id="filters" aria-label="Filtre"></section>
+
+  <section class="kpis" id="kpis" aria-label="Nøkkeltall"></section>
+
+  <section class="grid2" id="charts">
+    <article class="panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="main-title">Hovedgraf</h2>
+          <p class="sub" id="main-sub"></p>
+        </div>
+      </div>
+      <div class="controls" id="main-controls"></div>
+      <div class="chart-box"><canvas id="main-chart" aria-label="Hovedgraf"></canvas></div>
+    </article>
+    <article class="panel" id="second-panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="second-title"></h2>
+          <p class="sub" id="second-sub"></p>
+        </div>
+      </div>
+      <div class="controls" id="second-controls"></div>
+      <div class="chart-box"><canvas id="second-chart" aria-label="Sekundærgraf"></canvas></div>
+    </article>
+  </section>
+
+  <section class="panel wide" aria-labelledby="table-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="table-title">Data</h2>
+        <p class="sub">Klikk på en kolonneoverskrift for å sortere.</p>
+      </div>
+      <div class="columns-list" id="columns"></div>
+    </div>
+    <div class="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div>
+    <div class="table-foot">
+      <span id="table-count"></span>
+      <button class="btn" id="more" type="button" hidden>Vis 100 rader til</button>
+    </div>
+  </section>
+</div>
+
+<div class="drop" id="drop" hidden>
+  <div class="drop-inner">Slipp Excel-filen her<span>.xlsx, .xls, .ods eller .csv. Filen leses bare i nettleseren din.</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
