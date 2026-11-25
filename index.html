@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lånelogg – IKT-materiell</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">IKT-materiell</p>
+          <h1>Lånelogg</h1>
+        </div>
+        <button class="primary-button" id="openFormButton" type="button">
+          <span aria-hidden="true">+</span> Nytt lån
+        </button>
+      </header>
+
+      <section class="stats" aria-label="Oversikt">
+        <article>
+          <p>Utstyr ute</p>
+          <strong id="activeCount">0</strong>
+        </article>
+        <article>
+          <p>Forfalt</p>
+          <strong id="overdueCount">0</strong>
+        </article>
+        <article>
+          <p>Levert</p>
+          <strong id="returnedCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <label class="search">
+            <span class="sr-only">Søk i låneloggen</span>
+            <input id="searchInput" type="search" placeholder="Søk på navn eller utstyr" />
+          </label>
+          <select id="statusFilter" aria-label="Filtrer på status">
+            <option value="all">Alle lån</option>
+            <option value="active">Aktive lån</option>
+            <option value="overdue">Forfalt</option>
+            <option value="returned">Levert</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Utstyr</th>
+                <th>Låntaker</th>
+                <th>Datoer</th>
+                <th>Status</th>
+                <th><span class="sr-only">Handlinger</span></th>
+              </tr>
+            </thead>
+            <tbody id="loanList"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon" aria-hidden="true">▤</div>
+            <h2>Ingen lån å vise</h2>
+            <p>Registrer et lån for å komme i gang.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="loanDialog">
+      <form id="loanForm" method="dialog">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">Registrering</p>
+            <h2>Nytt lån</h2>
+          </div>
+          <button class="icon-button" id="closeFormButton" type="button" aria-label="Lukk">×</button>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Låntaker
+            <input name="borrower" required placeholder="Fornavn Etternavn" />
+          </label>
+          <label>
+            Utstyr
+            <input name="item" required placeholder="F.eks. Bærbar PC" />
+          </label>
+          <label>
+            Serienummer <span>(valgfritt)</span>
+            <input name="serial" placeholder="Serienummer eller merkelapp" />
+          </label>
+          <label>
+            Utlånsdato
+            <input name="loanDate" type="date" required />
+          </label>
+          <label>
+            Forfallsdato
+            <input name="dueDate" type="date" required />
+          </label>
+          <label>
+            Merknad <span>(valgfritt)</span>
+            <input name="note" placeholder="F.eks. med lader" />
+          </label>
+        </div>
+
+        <div class="dialog-actions">
+          <button class="secondary-button" id="cancelButton" type="button">Avbryt</button>
+          <button class="primary-button" type="submit">Registrer lån</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
